@@ -25,7 +25,7 @@ module.exports = {
         next();
     },
     isLoggedIn: (req, res, next) => {
-        if (!req.headers.authorization) {
+        if (!req.headers.authoººrization) {
             return res.status(400).send({
                 message: 'Your session is not valid!',
             });
@@ -41,23 +41,5 @@ module.exports = {
                 message: 'Your session is not valid!',
             });
         }
-    },
-    validateUpdate: (req, res, next) => {
-        // password min 6 chars
-        if (!req.body.newpassword || req.body.newpassword.length < 6) {
-            return res.status(400).send({
-                message: 'Please enter a new password with min. 6 chars',
-            });
-        }
-        // newpassword (repeat) must match
-        if (
-            !req.body.newpassword_repeat ||
-            req.body.password != req.body.newpasword_repeat
-        ) {
-            return res.status(400).send({
-                message: 'Both passwords must match',
-            });
-        }
-        next();
-    },
+    }
 };
